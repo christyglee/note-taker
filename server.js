@@ -30,3 +30,17 @@ app.get("/api/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "/db/db.json"));
 });
 
+// api/delete/table
+app.delete("/api/notes/:id", function(req, res) {
+    var getID = req.params.id;
+
+    for (var i = 0; i < db.length; i++) {
+        if (db[i].id === getID) {
+          db.splice(i,1);
+        }
+    }
+    fs.writeFile("./db/db.json", JSON.stringify(db), function(err){
+        if (err) throw err;
+        res.json("Response");
+    })
+})
