@@ -16,7 +16,7 @@ app.use(express.static("public"))
 
 // get routes/redirects
 // index.html
-app.get("*", function(req, res) {
+app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
